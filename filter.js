@@ -6,7 +6,7 @@ var isObject = require('101/is-object');
 var forEach = require('./for-each');
 
 /**
- * Creates a new array with all elements that pass the test implemented by the provided function.
+ * Creates a new object with all entries that pass the test implemented by the provided function.
  * @function module:object-loops/filter
  * @param {object} [obj] - object to filter values, optional if being used directly on Object.prototype
  * @param {filterCallback} callback - function to test each value in the object. return true to keep that entry, false otherwise.
