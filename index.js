@@ -15,7 +15,11 @@ var path = require('path');
 module.exports = extendObjectPrototype;
 
 function extendObjectPrototype (hideWarnings) {
-  ['forEach', 'map'].forEach(function (methodName) {
+  [
+    'forEach',
+    'map',
+    'filter'
+  ].forEach(function (methodName) {
     var filename = dasherize(methodName);
     var filepath = path.resolve('./'+filename);
     if (Object.prototype[methodName] && !hideWarnings) {

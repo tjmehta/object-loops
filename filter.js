@@ -1,0 +1,38 @@
+'use strict';
+/**
+ * @module object-loops/filter
+ */
+var isObject = require('101/is-object');
+var forEach = require('./for-each');
+
+/**
+ * Creates a new array with all elements that pass the test implemented by the provided function.
+ * @function module:object-loops/filter
+ * @param {object} [obj] - object to filter values, optional if being used directly on Object.prototype
+ * @param {filterCallback} callback - function to test each value in the object. return true to keep that entry, false otherwise.
+ * @param {*} [thisArg] - context to bind to callback
+ * @returns {object} newly created object with filtered values
+ */
+module.exports = filter;
+
+function filter (obj, callback, thisArg) {
+  if (typeof callback !== "function") {
+    throw new TypeError(callback + ' is not a function');
+  }
+  var filteredObj = {};
+  forEach(obj, function (val, key, obj) {
+    var include = callback.call(thisArg, val, key, obj);
+    if (include) {
+      filteredObj[key] = val;
+    }
+  });
+  return filteredObj;
+}
+/**
+ * This callback type is called `filterCallback` and is displayed as a global symbol.
+ * @callback filterCallback
+ * @param {string} key - object key (used in current iteration)
+ * @param {*} val - value for key
+ * @param {object} obj - object which values are being iterated
+ * @returns {boolean} include -  return true to keep that entry, false otherwise
+ */
