@@ -8,9 +8,9 @@ var forEach = require('./for-each');
 /**
  * Applies a function against an accumulator and each value of the object to reduce it to a single value.
  * @function module:object-loops/reduce
- * @param {object} [obj] - object to reduce values, optional if being used directly on Object.prototype
+ * @param {object} [obj] - object to reduce values, not accepted if being used directly on Object.prototype
  * @param {reduceCallback} callback - function to test each value in the object. return true to keep that entry, false otherwise.
- * @param {*} [initialValue] - object to use as the first argument to the first call of the callback
+ * @param {*} [initialValue] - optional. object to use as the first argument to the first call of the callback
  * @returns {*} finalValue - final value returned by reduction, or just first val if only one exists.
  */
 module.exports = reduce;

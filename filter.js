@@ -8,9 +8,9 @@ var forEach = require('./for-each');
 /**
  * Creates a new object with all entries that pass the test implemented by the provided function.
  * @function module:object-loops/filter
- * @param {object} [obj] - object to filter values, optional if being used directly on Object.prototype
+ * @param {object} [obj] - object to filter values, not accepted if being used directly on Object.prototype
  * @param {filterCallback} callback - function to test each value in the object. return true to keep that entry, false otherwise.
- * @param {*} [thisArg] - context to bind to callback
+ * @param {*} [thisArg] - optional. context to bind to callback
  * @returns {object} newly created object with filtered values
  */
 module.exports = filter;

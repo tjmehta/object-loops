@@ -8,9 +8,9 @@ var forEach = require('./for-each');
 /**
  * Creates a new object with the results of calling a provided function on every value in the object.
  * @function module:object-loops/map
- * @param {object} [obj] - object to map values, optional if being used directly on Object.prototype
+ * @param {object} [obj] - object to map values, not accepted if being used directly on Object.prototype
  * @param {mapCallback} callback - function that produces the new value for the new, mapped object
- * @param {*} [thisArg] - context to bind to callback
+ * @param {*} [thisArg] - optional. context to bind to callback
  * @returns {object} newly created object with mapped values
  */
 module.exports = map;

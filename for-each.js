@@ -6,7 +6,7 @@ var isObject = require('101/is-object');
 /**
  * Executes a provided function once per each object value.
  * @function module:object-loops/for-each
- * @param {object} [obj] - object to forEach, optional if being used directly on Object.prototype
+ * @param {object} [obj] - object to forEach, not accepted if being used directly on Object.prototype
  * @param {forEachCallback} callback - function that will be invoked once for each key-value pair
  * @param {*} [thisArg] - context to bind to callback
  */

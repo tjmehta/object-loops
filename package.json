@@ -35,9 +35,10 @@
   "homepage": "https://github.com/tjmehta/object-loops",
   "dependencies": {
     "101": "^0.8.0",
-    "dasherize": "^1.0.0"
+    "dasherize": "^1.0.0",
   },
   "devDependencies": {
+    "i": "^0.3.2",
     "code": "^1.2.1",
     "lab": "^5.1.0",
     "nodemon": "^1.2.1",
