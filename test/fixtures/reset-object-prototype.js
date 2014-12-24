@@ -18,7 +18,6 @@ function resetObjectPrototype (cb) {
 
 function matches (re) {
   return function (str) {
-    console.log(str, re);
     return re.test(str);
   };
 }
