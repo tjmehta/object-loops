@@ -18,7 +18,8 @@ function extendObjectPrototype (hideWarnings) {
   [
     'forEach',
     'map',
-    'filter'
+    'filter',
+    'reduce'
   ].forEach(function (methodName) {
     var filename = dasherize(methodName);
     var filepath = path.resolve('./'+filename);
