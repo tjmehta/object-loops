@@ -1,0 +1,47 @@
+{
+  "name": "object-loops",
+  "version": "0.0.0",
+  "description": "Functional methods like forEach, map, filter, and other ES5 Array methods for Objects in javascript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "lab -c test",
+    "test-watch": "nodemon --exec lab -c test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tjmehta/object-loops.git"
+  },
+  "keywords": [
+    "object",
+    "functional",
+    "methods",
+    "forEach",
+    "map",
+    "reduce",
+    "filter",
+    "some",
+    "every",
+    "extended",
+    "function"
+  ],
+  "author": "Tejesh Mehta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tjmehta/object-loops/issues"
+  },
+  "homepage": "https://github.com/tjmehta/object-loops",
+  "dependencies": {
+    "101": "^0.8.0",
+    "dasherize": "^1.0.0"
+  },
+  "devDependencies": {
+    "i": "^0.3.2",
+    "code": "^1.2.1",
+    "lab": "^5.1.0",
+    "nodemon": "^1.2.1",
+    "sinon": "^1.12.2"
+  }
+}
