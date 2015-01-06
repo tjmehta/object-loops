@@ -37,6 +37,7 @@ function extendObjectPrototype (hideWarnings) {
           args.unshift(this); // sets first arg as object instance
           return method.apply(this, args);
         },
+        enumerable: false,
         configurable: envIs('test') // hack for tests
       });
     }
