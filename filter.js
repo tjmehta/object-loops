@@ -31,8 +31,8 @@ function filter (obj, callback, thisArg) {
 /**
  * This callback type is called `filterCallback` and is displayed as a global symbol.
  * @callback filterCallback
- * @param {string} key - object key (used in current iteration)
  * @param {*} val - value for key
+ * @param {string} key - object key (used in current iteration)
  * @param {object} obj - object which values are being iterated
  * @returns {boolean} include -  return true to keep that entry, false otherwise
  */

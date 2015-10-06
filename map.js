@@ -28,8 +28,8 @@ function map (obj, callback, thisArg) {
 /**
  * This callback type is called `mapCallback` and is displayed as a global symbol.
  * @callback mapCallback
- * @param {string} key - object key (used in current iteration)
  * @param {*} val - value for key
+ * @param {string} key - object key (used in current iteration)
  * @param {object} obj - object which values are being iterated
  * @returns {*} mappedValue - value for key in the new, mapped object
  */
