@@ -13,23 +13,24 @@ var forEach = require('./for-each');
  * @param {*} [thisArg] - optional. context to bind to callback
  * @returns {object} newly created object with mapped values
  */
-module.exports = map;
+module.exports = mapKeys;
 
-function map (obj, callback, thisArg) {
+function mapKeys (obj, callback, thisArg) {
   if (typeof callback !== "function") {
     throw new TypeError(callback + ' is not a function');
   }
   var mappedObj = {};
   forEach(obj, function (val, key, obj) {
-    mappedObj[key] = callback.call(thisArg, val, key, obj);
+    var newKey = callback.call(thisArg, key, val, obj);
+    mappedObj[newKey] = val;
   });
   return mappedObj;
 }
 /**
  * This callback type is called `mapCallback` and is displayed as a global symbol.
  * @callback mapCallback
- * @param {*} val - value for key
  * @param {string} key - object key (used in current iteration)
+ * @param {*} val - value for key
  * @param {object} obj - object which values are being iterated
  * @returns {*} mappedValue - value for key in the new, mapped object
  */

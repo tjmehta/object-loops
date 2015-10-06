@@ -27,7 +27,7 @@ function forEach (obj, callback, thisArg) {
 /**
  * This callback type is called `forEachCallback` and is displayed as a global symbol.
  * @callback forEachCallback
- * @param {string} key - object key (used in current iteration)
  * @param {*} val - value for key
+ * @param {string} key - object key (used in current iteration)
  * @param {object} obj - object which values are being iterated
  */

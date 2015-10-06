@@ -31,6 +31,20 @@ describe('index', function () {
       expect(fn).to.throw(/this/);
       done();
     });
+    it('should iterate through all the key-value pairs in the object', function (done) {
+      var obj = {
+        foo: 1,
+        bar: 2,
+        baz: 3
+      };
+      var callback = noop;
+      var thisArg = {};
+      var forEach = obj.forEach;
+      var fn = forEach.bind(global, callback, thisArg);
+      // assertions
+      expect(fn).to.throw(/this/);
+      done();
+    });
   });
   describe('warnings', function () {
     var consoleLog = console.log;

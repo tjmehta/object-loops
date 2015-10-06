@@ -18,6 +18,7 @@ function extendObjectPrototype (hideWarnings) {
   [
     'forEach',
     'map',
+    'mapKeys',
     'filter',
     'reduce'
   ].forEach(function (methodName) {
@@ -30,7 +31,7 @@ function extendObjectPrototype (hideWarnings) {
       var method = require(filepath);
       Object.defineProperty(Object.prototype, methodName, {
         value: function () {
-          if (this === global) {
+          if (this === global || !exists(this)) {
             throw new TypeError('this is null or not defined for '+method);
           }
           var args = Array.prototype.slice.call(arguments);
