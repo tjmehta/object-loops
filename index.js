@@ -18,6 +18,7 @@ function extendObjectPrototype (hideWarnings) {
   [
     'forEach',
     'map',
+    'mapKeys',
     'filter',
     'reduce'
   ].forEach(function (methodName) {
