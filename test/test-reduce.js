@@ -145,9 +145,17 @@ describe('reduce', function () {
       it('should use array reduce', function (done) {
         var arr = [1,2,3];
         var callback = sum;
-        expect(reduce(arr, callback, arr))
-          .to.equal(arr.reduce(callback, arr));
-        sinon.assert.calledWith(Array.prototype.reduce, callback, arr);
+        expect(reduce(arr, callback, 20))
+          .to.equal(arr.reduce(callback, 20));
+        sinon.assert.calledWith(Array.prototype.reduce, callback, 20);
+        done();
+      });
+      it('should use array reduce w/out initialValue', function (done) {
+        var arr = [1,2,3];
+        var callback = sum;
+        expect(reduce(arr, callback))
+          .to.equal(arr.reduce(callback));
+        sinon.assert.calledWith(Array.prototype.reduce, callback);
         done();
       });
     });

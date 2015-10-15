@@ -17,7 +17,9 @@ module.exports = reduce;
 
 function reduce (obj, callback, initialValue) {
   if (Array.isArray(obj)) {
-    return obj.reduce(callback, initialValue);
+    return (arguments.length > 2) ?
+      obj.reduce(callback, initialValue) :
+      obj.reduce(callback);
   }
   if (!isObject(obj)) {
     throw new TypeError(obj + ' is not an object');
