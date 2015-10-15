@@ -16,6 +16,9 @@ var forEach = require('./for-each');
 module.exports = reduce;
 
 function reduce (obj, callback, initialValue) {
+  if (Array.isArray(obj)) {
+    return obj.reduce(callback, initialValue);
+  }
   if (!isObject(obj)) {
     throw new TypeError(obj + ' is not an object');
   }

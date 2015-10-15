@@ -7,10 +7,12 @@ var describe = lab.describe;
 var it = lab.it;
 var before = lab.before;
 var after = lab.after;
+var beforeEach = lab.beforeEach;
+var afterEach = lab.afterEach;
 var expect = Code.expect;
 
 var noop = require('101/noop');
-function sum (x, y) { return x+y; };
+function sum (x, y) { return x+y; }
 var reduce = require('../reduce');
 
 describe('reduce', function () {
@@ -128,6 +130,24 @@ describe('reduce', function () {
         var callback = noop;
         var fn = reduce.bind(null, obj, noop);
         expect(fn).to.throw(/empty object/);
+        done();
+      });
+    });
+    describe('use w/ array', function () {
+      beforeEach(function (done) {
+        sinon.spy(Array.prototype, 'reduce');
+        done();
+      });
+      afterEach(function (done) {
+        Array.prototype.reduce.restore();
+        done();
+      });
+      it('should use array reduce', function (done) {
+        var arr = [1,2,3];
+        var callback = sum;
+        expect(reduce(arr, callback, arr))
+          .to.equal(arr.reduce(callback, arr));
+        sinon.assert.calledWith(Array.prototype.reduce, callback, arr);
         done();
       });
     });
