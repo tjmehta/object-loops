@@ -7,6 +7,8 @@ var describe = lab.describe;
 var it = lab.it;
 var before = lab.before;
 var after = lab.after;
+var beforeEach = lab.beforeEach;
+var afterEach = lab.afterEach;
 var expect = Code.expect;
 
 var noop = require('101/noop');
@@ -127,6 +129,23 @@ describe('filter', function () {
         var thisArg = {};
         var fn = filter.bind(null, obj, callback, thisArg);
         expect(fn).to.throw(/not a function/);
+        done();
+      });
+    });
+    describe('use w/ array', function () {
+      beforeEach(function (done) {
+        sinon.spy(Array.prototype, 'filter');
+        done();
+      });
+      afterEach(function (done) {
+        Array.prototype.filter.restore();
+        done();
+      });
+      it('should use array filter', function (done) {
+        var arr = [1,2,3];
+        expect(filter(arr, equalsOneOrThree, arr))
+          .to.deep.equal(arr.filter(equalsOneOrThree, arr));
+        sinon.assert.calledWith(Array.prototype.filter, equalsOneOrThree, arr);
         done();
       });
     });

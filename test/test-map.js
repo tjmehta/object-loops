@@ -7,6 +7,8 @@ var describe = lab.describe;
 var it = lab.it;
 var before = lab.before;
 var after = lab.after;
+var beforeEach = lab.beforeEach;
+var afterEach = lab.afterEach;
 var expect = Code.expect;
 
 var noop = require('101/noop');
@@ -112,6 +114,24 @@ describe('map', function () {
         var thisArg = {};
         var fn = map.bind(null, obj, callback, thisArg);
         expect(fn).to.throw(/not a function/);
+        done();
+      });
+    });
+    describe('use w/ array', function () {
+      beforeEach(function (done) {
+        sinon.spy(Array.prototype, 'map');
+        done();
+      });
+      afterEach(function (done) {
+        Array.prototype.map.restore();
+        done();
+      });
+      it('should use array map', function (done) {
+        var arr = [1,2,3];
+        var callback = multiplyBy(2);
+        expect(map(arr, callback, arr))
+          .to.deep.equal(arr.map(callback, arr));
+        sinon.assert.calledWith(Array.prototype.map, callback, arr);
         done();
       });
     });

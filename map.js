@@ -16,6 +16,9 @@ var forEach = require('./for-each');
 module.exports = map;
 
 function map (obj, callback, thisArg) {
+  if (Array.isArray(obj)) {
+    return obj.map(callback, thisArg);
+  }
   if (typeof callback !== "function") {
     throw new TypeError(callback + ' is not a function');
   }

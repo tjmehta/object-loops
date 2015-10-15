@@ -7,6 +7,8 @@ var describe = lab.describe;
 var it = lab.it;
 var before = lab.before;
 var after = lab.after;
+var beforeEach = lab.beforeEach;
+var afterEach = lab.afterEach;
 var expect = Code.expect;
 
 var noop = require('101/noop');
@@ -86,6 +88,24 @@ describe('forEach', function () {
         var thisArg = {};
         var fn = forEach.bind(null, obj, callback, thisArg);
         expect(fn).to.throw(/not a function/);
+        done();
+      });
+    });
+    describe('use w/ array', function () {
+      beforeEach(function (done) {
+        sinon.spy(Array.prototype, 'forEach');
+        done();
+      });
+      afterEach(function (done) {
+        Array.prototype.forEach.restore();
+        done();
+      });
+      it('should use array forEach', function (done) {
+        var arr = [1,2,3];
+        var callback = noop;
+        expect(forEach(arr, callback, arr))
+          .to.equal(arr.forEach(callback, arr));
+        sinon.assert.calledWith(Array.prototype.forEach, callback, arr);
         done();
       });
     });

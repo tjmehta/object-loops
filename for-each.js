@@ -13,6 +13,9 @@ var isObject = require('101/is-object');
 module.exports = forEach;
 
 function forEach (obj, callback, thisArg) {
+  if (Array.isArray(obj)) {
+    return obj.forEach(callback, thisArg);
+  }
   if (!isObject(obj)) {
     throw new TypeError(obj + ' is not an object');
   }

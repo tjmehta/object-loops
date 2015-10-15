@@ -19,12 +19,16 @@ function mapKeys (obj, callback, thisArg) {
   if (typeof callback !== "function") {
     throw new TypeError(callback + ' is not a function');
   }
-  var mappedObj = {};
+  var objIsArray = Array.isArray(obj);
+  if (objIsArray) {
+    forEach = Array.prototype.forEach.call.bind(Array.prototype.forEach);
+  }
+  var mapped = objIsArray ? [] : {};
   forEach(obj, function (val, key, obj) {
     var newKey = callback.call(thisArg, key, val, obj);
-    mappedObj[newKey] = val;
+    mapped[newKey] = val;
   });
-  return mappedObj;
+  return mapped;
 }
 /**
  * This callback type is called `mapCallback` and is displayed as a global symbol.

@@ -89,7 +89,8 @@ describe('mapKeys', function () {
       var thisArg = {};
       var mappedObj = mapKeys(obj, prependWith('yolo'));
       Object.keys(obj).forEach(function (key) {
-        expect(mappedObj[key]).to.equal(obj[prependWith('yolo')(key)]);
+        var newKey = prependWith('yolo')(key);
+        expect(mappedObj[newKey]).to.equal(obj[key]);
       });
       done();
     });
@@ -115,11 +116,57 @@ describe('mapKeys', function () {
         done();
       });
     });
+    describe('use w/ array', function () {
+      it('should iterate through all the key-value pairs in the object', function (done) {
+        var arr = [
+          1,
+          2,
+          3
+        ];
+        var callback = sinon.spy();
+        var thisArg = {};
+        mapKeys(arr, callback, thisArg);
+        // assertions
+        expect(callback.callCount).to.equal(3);
+        expect(callback.calledOn(thisArg)).to.equal(true);
+        expect(callback.firstCall.args[0]).to.equal(0); // index
+        expect(callback.firstCall.args[1]).to.equal(1);
+        expect(callback.firstCall.args[2]).to.equal(arr);
+        expect(callback.secondCall.args[0]).to.equal(1); // index
+        expect(callback.secondCall.args[1]).to.equal(2);
+        expect(callback.secondCall.args[2]).to.equal(arr);
+        expect(callback.thirdCall.args[0]).to.equal(2); // index
+        expect(callback.thirdCall.args[1]).to.equal(3);
+        expect(callback.thirdCall.args[2]).to.equal(arr);
+        done();
+      });
+      it('should return an object with new mapped values', function (done) {
+        var arr = [
+          1,
+          2,
+          3
+        ];
+        var thisArg = {};
+        var mapped = mapKeys(arr, add(1));
+        expect(mapped).instanceOf(Array);
+        Object.keys(arr).forEach(function (key) {
+          var intKey = parseInt(key);
+          var newKey = add(1)(intKey);
+          expect(mapped[newKey]).to.equal(arr[key]);
+        });
+        done();
+      });
+    });
   });
 });
 
 function prependWith (pre) {
   return function (key) {
     return pre + key;
+  };
+}
+function add (n) {
+  return function (i) {
+    return i + n;
   };
 }
