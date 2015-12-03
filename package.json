@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "lab -c test",
-    "test-watch": "nodemon --exec lab -c test"
+    "test-watch": "nodemon --exec lab -c test",
+    "lint": "standard",
+    "format": "standard --format"
   },
   "repository": {
     "type": "git",
@@ -44,6 +46,7 @@
     "code": "^1.5.0",
     "lab": "^6.2.0",
     "nodemon": "^1.8.1",
-    "sinon": "^1.17.2"
+    "sinon": "^1.17.2",
+    "standard": "^5.4.1"
   }
 }
