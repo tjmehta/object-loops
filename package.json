@@ -20,6 +20,9 @@
     "methods",
     "forEach",
     "map",
+    "map keys",
+    "keys",
+    "mapKeys",
     "reduce",
     "filter",
     "some",
@@ -34,14 +37,13 @@
   },
   "homepage": "https://github.com/tjmehta/object-loops",
   "dependencies": {
-    "101": "^0.8.0",
-    "dasherize": "^1.0.0"
+    "101": "^1.2.0",
+    "dasherize": "^2.0.0"
   },
   "devDependencies": {
-    "i": "^0.3.2",
-    "code": "^1.2.1",
-    "lab": "^5.1.0",
-    "nodemon": "^1.2.1",
-    "sinon": "^1.12.2"
+    "code": "^1.5.0",
+    "lab": "^6.2.0",
+    "nodemon": "^1.8.1",
+    "sinon": "^1.17.2"
   }
 }
