@@ -30,7 +30,6 @@ reduce({ x:10, y: 20 }, callback)
 ```js
 var chain = require('object-loops/chain')
 chain({ x:10, y: 20 })
-  .forEach(callback)
   .filter(callback)
   .mapKeys(callback)
   .map(callback)

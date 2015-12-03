@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "lab -c test",
-    "test-watch": "nodemon --exec lab -c test",
+    "test": "lab -t 100 -a code",
+    "test-watch": "nodemon --exec npm test",
     "lint": "standard",
     "format": "standard --format"
   },
