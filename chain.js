@@ -37,7 +37,7 @@ function extendChainPrototype (hideWarnings) {
     'reduce'
   ].forEach(function (methodName) {
     var filename = dasherize(methodName)
-    var filepath = path.resolve('./' + filename)
+    var filepath = path.join(__dirname, filename)
     var method = require(filepath)
 
     Object.defineProperty(Chain.prototype, methodName, {
