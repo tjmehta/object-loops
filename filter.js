@@ -1,9 +1,7 @@
-'use strict';
 /**
  * @module object-loops/filter
  */
-var isObject = require('101/is-object');
-var forEach = require('./for-each');
+var forEach = require('./for-each')
 
 /**
  * Creates a new object with all entries that pass the test implemented by the provided function.
@@ -13,23 +11,23 @@ var forEach = require('./for-each');
  * @param {*} [thisArg] - optional. context to bind to callback
  * @returns {object} newly created object with filtered values
  */
-module.exports = filter;
+module.exports = filter
 
 function filter (obj, callback, thisArg) {
   if (Array.isArray(obj)) {
-    return obj.filter(callback, thisArg);
+    return obj.filter(callback, thisArg)
   }
-  if (typeof callback !== "function") {
-    throw new TypeError(callback + ' is not a function');
+  if (typeof callback !== 'function') {
+    throw new TypeError(callback + ' is not a function')
   }
-  var filteredObj = {};
+  var filteredObj = {}
   forEach(obj, function (val, key, obj) {
-    var include = callback.call(thisArg, val, key, obj);
+    var include = callback.call(thisArg, val, key, obj)
     if (include) {
-      filteredObj[key] = val;
+      filteredObj[key] = val
     }
-  });
-  return filteredObj;
+  })
+  return filteredObj
 }
 /**
  * This callback type is called `filterCallback` and is displayed as a global symbol.

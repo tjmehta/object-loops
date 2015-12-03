@@ -9,19 +9,47 @@ Functional methods like forEach, map, filter, and other ES5 Array methods for Ob
 
 # Usage
 
+#### You can require each method individually `object-loop/<loop>`
+
+```js
+var filter = require('object-loops/filter')
+var forEach = require('object-loops/for-each')
+var mapKeys = require('object-loops/map-keys')
+var map = require('object-loops/map')
+var reduce = require('object-loops/reduce')
+// usage
+forEach({ x:10, y: 20 }, callback)
+filter({ x:10, y: 20 }, callback)
+mapKeys({ x:10, y: 20 }, callback)
+map({ x:10, y: 20 }, callback)
+reduce({ x:10, y: 20 }, callback)
+```
+
+#### If you want to chain multiple object-loops use `object-loop/chain`
+
+```js
+var chain = require('object-loops/chain')
+chain({ x:10, y: 20 })
+  .forEach(callback)
+  .filter(callback)
+  .mapKeys(callback)
+  .map(callback)
+  .reduce(callback)
+  .toJSON() // must be called at the end to return modified object
+
+```
+
 #### If you want to use forEach, map, reduce, filter, etc methods directly on objects:
 
-```
-require('object-loops')();
-// obj.forEach()
+```js
+require('object-loops')() // extends Object.prototype
+obj.forEach(callback)
+obj.filter(callback)
+obj.mapKeys(callback)
+obj.map(callback)
+obj.reduce(callback)
 ```
 
-#### If you do not like the idea of extending Object.prototype you can require each method individually:
-
-```
-var objForEach = require('object-loops/for-each');
-objForEach({ x:10, y: 20 }, callback, thisArg);
-```
 
 ## forEach
 
@@ -32,21 +60,21 @@ Executes a provided function once per each object value.
  * @param {*} [thisArg] - optional. context to bind to callback
 
 ```js
-require('object-loops')(); // extends Object.prototype
+var forEach = require('object-loops/for-each')
 
 var obj = {
   foo: 10,
   bar: 20,
   baz: 30
-};
-var keyConcat = '';
-var valSum = 0;
-obj.forEach(function (val, key, obj) {
-  keyConcat += key;
-  valSum += val;
-});
-keyConcat; // = 'foobarbaz'
-valSum;    // = 60
+}
+var keyConcat = ''
+var valSum = 0
+forEach(obj, function (val, key, obj) {
+  keyConcat += key
+  valSum += val
+})
+keyConcat // = 'foobarbaz'
+valSum    // = 60
 ```
 
 ## map
@@ -59,17 +87,17 @@ Creates a new object with the results of calling a provided function on every va
  * @returns {object} newly created object with mapped values
 
 ```js
-require('object-loops')(); // extends Object.prototype
+var map = require('object-loops/map')
 
 var obj = {
   foo: 10,
   bar: 20,
   baz: 30
-};
-var mappedObj = obj.map(function (val, key, obj) {
-  return val*2;
-});
-mappedObj; /* Each val multiplied by 2
+}
+var mappedObj = map(obj, function (val, key, obj) {
+  return val*2
+})
+mappedObj /* Each val multiplied by 2
 {
   foo: 20,
   bar: 40,
@@ -88,18 +116,18 @@ Creates a new object with all entries that pass the test implemented by the prov
  * @returns {object} newly created object with filtered values
 
 ```js
-require('object-loops')(); // extends Object.prototype
+var filter = require('object-loops/filter')
 
 var obj = {
   foo: 10,
   bar: 20,
   baz: 30,
   qux: 40,
-};
-var filteredObj = obj.filter(function (val, key, obj) {
-  return val > 25;
-});
-filteredObj; /* Only has entries with vals greater than 25
+}
+var filteredObj = filter(obj, function (val, key, obj) {
+  return val > 25
+})
+filteredObj /* Only has entries with vals greater than 25
 {
   baz: 30,
   qux: 40
@@ -117,17 +145,17 @@ Applies a function against an accumulator and each value of the object to reduce
  * @returns {*} finalValue - final value returned by reduction, or just first val if only one exists.
 
 ```js
-require('object-loops')(); // extends Object.prototype
+var reduce = require('object-loops/reduce')
 
 var obj = {
   foo: 10,
   bar: 20,
   baz: 30
-};
-var valSum = obj.reduce(function (prevVal, val, key, obj) {
-  return prevVal + val;
-});
-valSum; // 60
+}
+var sum = reduce(obj, function (prevVal, val, key, obj) {
+  return prevVal + val
+})
+sum // 60
 ```
 
 ## License
