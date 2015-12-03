@@ -22,7 +22,7 @@ function extendObjectPrototype (hideWarnings) {
     'reduce'
   ].forEach(function (methodName) {
     var filename = dasherize(methodName)
-    var filepath = path.resolve('./' + filename)
+    var filepath = path.join(__dirname, filename)
     if (Object.prototype[methodName] && !hideWarnings) {
       console.log('warn: "Object.prototype.' + methodName + '" already exists.')
     } else {
