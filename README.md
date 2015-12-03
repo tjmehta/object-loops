@@ -9,7 +9,7 @@ Functional methods like forEach, map, filter, and other ES5 Array methods for Ob
 
 # Usage
 
-#### You can require each method individually `object-loop/<loop>`
+#### You can require each method individually `object-loops/<loop>`
 
 ```js
 var filter = require('object-loops/filter')
@@ -25,7 +25,7 @@ map({ x:10, y: 20 }, callback)
 reduce({ x:10, y: 20 }, callback)
 ```
 
-#### If you want to chain multiple object-loops use `object-loop/chain`
+#### If you want to chain multiple object-loops use `object-loops/chain`
 
 ```js
 var chain = require('object-loops/chain')
