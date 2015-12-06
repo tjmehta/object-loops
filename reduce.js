@@ -1,7 +1,6 @@
 /**
  * @module object-loops/reduce
  */
-var isObject = require('101/is-object')
 
 /**
  * Applies a function against an accumulator and each value of the object to reduce it to a single value.
@@ -19,11 +18,11 @@ function reduce (obj, callback, initialValue) {
       ? obj.reduce(callback, initialValue)
       : obj.reduce(callback)
   }
-  if (!isObject(obj)) {
-    throw new TypeError(obj + ' is not an object')
+  if (!(obj instanceof Object)) {
+    throw new TypeError(obj + ' must be an object')
   }
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   var keys = Object.keys(obj)
   var noInitialValue = arguments.length < 3 // initial value can be null or undefined

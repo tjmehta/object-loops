@@ -18,7 +18,7 @@ function filter (obj, callback, thisArg) {
     return obj.filter(callback, thisArg)
   }
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   var filteredObj = {}
   forEach(obj, function (val, key, obj) {

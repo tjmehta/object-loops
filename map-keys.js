@@ -15,7 +15,7 @@ module.exports = mapKeys
 
 function mapKeys (obj, callback, thisArg) {
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   var objIsArray = Array.isArray(obj)
   if (objIsArray) {

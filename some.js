@@ -1,7 +1,6 @@
 /**
  * @module object-loops/some
  */
-var isObject = require('101/is-object')
 
 /**
  * Tests whether some value in the object passes the test implemented by the callback.
@@ -17,11 +16,11 @@ function some (obj, callback, thisArg) {
   if (Array.isArray(obj)) {
     return obj.some(callback, thisArg)
   }
-  if (!isObject(obj)) {
-    throw new TypeError(obj + ' is not an object')
+  if (!(obj instanceof Object)) {
+    throw new TypeError(obj + ' must be an object')
   }
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   var ret = false
   var keys = Object.keys(obj)
