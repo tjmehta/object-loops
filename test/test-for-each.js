@@ -70,15 +70,15 @@ describe('forEach', function () {
       done()
     })
     describe('errors', function () {
-      it('should throw an error if obj is not an object', function (done) {
+      it('should throw an error if obj must be an object', function (done) {
         var obj = 'notObject'
         var callback = noop
         var thisArg = {}
         var fn = forEach.bind(null, obj, callback, thisArg)
-        expect(fn).to.throw(/not an object/)
+        expect(fn).to.throw(/must be an object/)
         done()
       })
-      it('should throw an error if callback is not a function', function (done) {
+      it('should throw an error if callback must be a function', function (done) {
         var obj = {
           foo: 1,
           bar: 2,
@@ -87,7 +87,7 @@ describe('forEach', function () {
         var callback = 'notFunction'
         var thisArg = {}
         var fn = forEach.bind(null, obj, callback, thisArg)
-        expect(fn).to.throw(/not a function/)
+        expect(fn).to.throw(/must be a function/)
         done()
       })
     })

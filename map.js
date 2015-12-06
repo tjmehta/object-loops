@@ -18,7 +18,7 @@ function map (obj, callback, thisArg) {
     return obj.map(callback, thisArg)
   }
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   var mappedObj = {}
   forEach(obj, function (val, key, obj) {

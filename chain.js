@@ -11,8 +11,8 @@ function Chain (obj) {
   if (!(this instanceof Chain)) {
     return new Chain(obj)
   }
-  if (typeof obj !== 'object') {
-    throw new TypeError('obj must be an object')
+  if (!(obj instanceof Object)) {
+    throw new TypeError(obj + ' must be an object')
   }
   this.obj = obj
 }

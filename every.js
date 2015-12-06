@@ -1,7 +1,6 @@
 /**
  * @module object-loops/every
  */
-var isObject = require('101/is-object')
 
 /**
  * Tests whether every value in the object passes the test implemented by the callback.
@@ -17,11 +16,11 @@ function every (obj, callback, thisArg) {
   if (Array.isArray(obj)) {
     return obj.every(callback, thisArg)
   }
-  if (!isObject(obj)) {
-    throw new TypeError(obj + ' is not an object')
+  if (!(obj instanceof Object)) {
+    throw new TypeError(obj + ' must be an object')
   }
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   var ret = true
   var keys = Object.keys(obj)

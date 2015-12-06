@@ -1,7 +1,7 @@
 /**
  * @module object-loops/for-each
  */
-var isObject = require('101/is-object')
+
 /**
  * Executes a provided function once per each object value.
  * @function module:object-loops/for-each
@@ -15,11 +15,11 @@ function forEach (obj, callback, thisArg) {
   if (Array.isArray(obj)) {
     return obj.forEach(callback, thisArg)
   }
-  if (!isObject(obj)) {
-    throw new TypeError(obj + ' is not an object')
+  if (!(obj instanceof Object)) {
+    throw new TypeError(obj + ' must be an object')
   }
   if (typeof callback !== 'function') {
-    throw new TypeError(callback + ' is not a function')
+    throw new TypeError(callback + ' must be a function')
   }
   Object.keys(obj).forEach(function (key) {
     var val = obj[key]
