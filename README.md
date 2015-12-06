@@ -157,6 +157,58 @@ var sum = reduce(obj, function (prevVal, val, key, obj) {
 sum // 60
 ```
 
+## every
+
+Tests whether every value in the object passes the test implemented by the callback.
+
+ * @function module:object-loops/every
+ * @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+ * @param {everyCallback} callback - function to test each value in the object. return falsey to end the loop, truthy otherwise.
+ * @param {*} [thisArg] - optional. context to bind to callback
+ * @returns {boolean} if callback returns false, the loop is ended and false is returned (else false)
+
+```js
+var every = require('object-loops/every')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var allGreaterThan25 = every(obj, function (val, key, obj) {
+  return val > 25
+})
+allGreaterThan25 // false
+*/
+```
+
+## some
+
+Tests whether some value in the object passes the test implemented by the callback.
+
+ * @function module:object-loops/some
+ * @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+ * @param {someCallback} callback - function to test each value in the object. return truthy to end the loop, falsey otherwise.
+ * @param {*} [thisArg] - optional. context to bind to callback
+ * @returns {boolean} if callback returns true, the loop is ended and true is returned (else false)
+
+```js
+var some = require('object-loops/some')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var anyGreaterThan25 = some(obj, function (val, key, obj) {
+  return val > 25
+})
+anyGreaterThan25 // true
+*/
+```
+
 ## License
 
 MIT

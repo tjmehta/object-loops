@@ -15,11 +15,13 @@ module.exports = extendObjectPrototype
 
 function extendObjectPrototype (hideWarnings) {
   [
+    'every',
     'forEach',
     'filter',
     'map',
     'mapKeys',
-    'reduce'
+    'reduce',
+    'some'
   ].forEach(function (methodName) {
     var filename = dasherize(methodName)
     var filepath = path.join(__dirname, filename)
