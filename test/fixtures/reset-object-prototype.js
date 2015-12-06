@@ -1,9 +1,11 @@
 var methodNames = [
+  'every',
   'forEach',
   'filter',
   'map',
   'mapKeys',
-  'reduce'
+  'reduce',
+  'some'
 ]
 
 module.exports = resetObjectPrototype
