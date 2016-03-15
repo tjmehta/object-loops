@@ -15,7 +15,7 @@ function forEach (obj, callback, thisArg) {
   if (Array.isArray(obj)) {
     return obj.forEach(callback, thisArg)
   }
-  if (!(obj instanceof Object)) {
+  if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError(obj + ' must be an object')
   }
   if (typeof callback !== 'function') {

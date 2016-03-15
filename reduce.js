@@ -18,7 +18,7 @@ function reduce (obj, callback, initialValue) {
       ? obj.reduce(callback, initialValue)
       : obj.reduce(callback)
   }
-  if (!(obj instanceof Object)) {
+  if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError(obj + ' must be an object')
   }
   if (typeof callback !== 'function') {
