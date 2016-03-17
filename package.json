@@ -1,6 +1,6 @@
 {
   "name": "object-loops",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Functional methods like forEach, map, filter, and other Array methods for Objects in javascript",
   "main": "index.js",
   "directories": {
