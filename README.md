@@ -1,11 +1,23 @@
 object-loops [![Build Status](https://travis-ci.org/tjmehta/object-loops.svg)](https://travis-ci.org/tjmehta/object-loops)
 ============
 
-Functional methods like forEach, map, filter, and other ES5 Array methods for Objects in javascript
+Functional methods like forEach, map, filter, and other Array methods for Objects in javascript
 
 # Installation
 
 `npm install object-loops`
+
+# Index
+
+[chain](https://github.com/tjmehta/object-loops#usage)
+[every](https://github.com/tjmehta/object-loops#every)
+[find](https://github.com/tjmehta/object-loops#find)
+[findKey](https://github.com/tjmehta/object-loops#findKey)
+[filter](https://github.com/tjmehta/object-loops#filter)
+[forEach](https://github.com/tjmehta/object-loops#forEach)
+[map](https://github.com/tjmehta/object-loops#map)
+[reduce](https://github.com/tjmehta/object-loops#reduce)
+[some](https://github.com/tjmehta/object-loops#some)
 
 # Usage
 
@@ -17,6 +29,7 @@ var forEach = require('object-loops/for-each')
 var mapKeys = require('object-loops/map-keys')
 var map = require('object-loops/map')
 var reduce = require('object-loops/reduce')
+//... and more
 // usage
 forEach({ x:10, y: 20 }, callback)
 filter({ x:10, y: 20 }, callback)
@@ -49,6 +62,118 @@ obj.map(callback)
 obj.reduce(callback)
 ```
 
+## every
+
+Tests whether every value in the object passes the test implemented by the callback.
+
+ * @function module:object-loops/every
+ * @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+ * @param {everyCallback} callback - function to test each value in the object. return falsey to end the loop, truthy otherwise.
+ * @param {*} [thisArg] - optional. context to bind to callback
+ * @returns {boolean} if callback returns false, the loop is ended and false is returned (else false)
+
+```js
+var every = require('object-loops/every')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var allGreaterThan25 = every(obj, function (val, key, obj) {
+  return val > 25
+})
+allGreaterThan25 // false
+*/
+```
+
+## find
+
+Find the value of the the object that passes the test implemented by the callback.
+
+* @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+* @param {findCallback} callback - function to test each value in the object. return truthy to end the loop and return index, falsey otherwise.
+* @param {*} [thisArg] - optional. context to bind to callback
+* @returns {*} if callback returns true, the loop is ended and the passing `val` is returned (else undefined)
+
+```js
+var find = require('object-loops/find')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var key = find(obj, function (val, key, obj) {
+  return val > 25
+})
+key // 30
+var notfound = find(obj, function (val, key, obj) {
+  return val > 100
+})
+notfound // undefined
+*/
+```
+
+## findKey
+
+Find the key of the the object that passes the test implemented by the callback. Very similar to `Array.prototype.findIndex`
+
+* @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+* @param {findKeyCallback} callback - function to test each value in the object. return truthy to end the loop and return index, falsey otherwise.
+* @param {*} [thisArg] - optional. context to bind to callback
+* @returns {*} if callback returns true, the loop is ended and the passing `key` is returned (else undefined)
+
+```js
+var findKey = require('object-loops/find-key')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var key = findKey(obj, function (val, key, obj) {
+  return val > 25
+})
+key // 'baz'
+var notfound = findKey(obj, function (val, key, obj) {
+  return val > 100
+})
+notfound // undefined
+*/
+```
+
+## filter
+
+Creates a new object with all entries that pass the test implemented by the provided function.
+
+ * @param {object} [obj] - object to filter values, not accepted if being used directly on Object.prototype
+ * @param {function} callback - function to test each value in the object. return true to keep that entry, false otherwise.
+ * @param {*} [thisArg] - optional. context to bind to callback
+ * @returns {object} newly created object with filtered values
+
+```js
+var filter = require('object-loops/filter')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var filteredObj = filter(obj, function (val, key, obj) {
+  return val > 25
+})
+filteredObj /* Only has entries with vals greater than 25
+{
+  baz: 30,
+  qux: 40
+}
+*/
+```
 
 ## forEach
 
@@ -105,35 +230,6 @@ mappedObj /* Each val multiplied by 2
 */
 ```
 
-## filter
-
-Creates a new object with all entries that pass the test implemented by the provided function.
-
- * @param {object} [obj] - object to filter values, not accepted if being used directly on Object.prototype
- * @param {function} callback - function to test each value in the object. return true to keep that entry, false otherwise.
- * @param {*} [thisArg] - optional. context to bind to callback
- * @returns {object} newly created object with filtered values
-
-```js
-var filter = require('object-loops/filter')
-
-var obj = {
-  foo: 10,
-  bar: 20,
-  baz: 30,
-  qux: 40,
-}
-var filteredObj = filter(obj, function (val, key, obj) {
-  return val > 25
-})
-filteredObj /* Only has entries with vals greater than 25
-{
-  baz: 30,
-  qux: 40
-}
-*/
-```
-
 ## reduce
 
 Applies a function against an accumulator and each value of the object to reduce it to a single value.
@@ -155,32 +251,6 @@ var sum = reduce(obj, function (prevVal, val, key, obj) {
   return prevVal + val
 })
 sum // 60
-```
-
-## every
-
-Tests whether every value in the object passes the test implemented by the callback.
-
- * @function module:object-loops/every
- * @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
- * @param {everyCallback} callback - function to test each value in the object. return falsey to end the loop, truthy otherwise.
- * @param {*} [thisArg] - optional. context to bind to callback
- * @returns {boolean} if callback returns false, the loop is ended and false is returned (else false)
-
-```js
-var every = require('object-loops/every')
-
-var obj = {
-  foo: 10,
-  bar: 20,
-  baz: 30,
-  qux: 40,
-}
-var allGreaterThan25 = every(obj, function (val, key, obj) {
-  return val > 25
-})
-allGreaterThan25 // false
-*/
 ```
 
 ## some
