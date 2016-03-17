@@ -1,7 +1,9 @@
 var methodNames = [
   'every',
-  'forEach',
   'filter',
+  'find',
+  'findKey',
+  'forEach',
   'map',
   'mapKeys',
   'reduce',

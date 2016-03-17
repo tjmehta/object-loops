@@ -11,6 +11,8 @@ Functional methods like forEach, map, filter, and other ES5 Array methods for Ob
 
 [chain](https://github.com/tjmehta/object-loops#usage)
 [every](https://github.com/tjmehta/object-loops#every)
+[find](https://github.com/tjmehta/object-loops#find)
+[findKey](https://github.com/tjmehta/object-loops#findKey)
 [filter](https://github.com/tjmehta/object-loops#filter)
 [forEach](https://github.com/tjmehta/object-loops#forEach)
 [map](https://github.com/tjmehta/object-loops#map)
@@ -83,6 +85,64 @@ var allGreaterThan25 = every(obj, function (val, key, obj) {
   return val > 25
 })
 allGreaterThan25 // false
+*/
+```
+
+## find
+
+Find the value of the the object that passes the test implemented by the callback.
+
+* @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+* @param {findCallback} callback - function to test each value in the object. return truthy to end the loop and return index, falsey otherwise.
+* @param {*} [thisArg] - optional. context to bind to callback
+* @returns {*} if callback returns true, the loop is ended and the passing `val` is returned (else undefined)
+
+```js
+var find = require('object-loops/find')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var key = find(obj, function (val, key, obj) {
+  return val > 25
+})
+key // 30
+var notfound = find(obj, function (val, key, obj) {
+  return val > 100
+})
+notfound // undefined
+*/
+```
+
+## findKey
+
+Find the key of the the object that passes the test implemented by the callback. Very similar to `Array.prototype.findIndex`
+
+* @param {object} [obj] - object to iterate through, not accepted if being used directly on Object.prototype
+* @param {findKeyCallback} callback - function to test each value in the object. return truthy to end the loop and return index, falsey otherwise.
+* @param {*} [thisArg] - optional. context to bind to callback
+* @returns {*} if callback returns true, the loop is ended and the passing `key` is returned (else undefined)
+
+```js
+var findKey = require('object-loops/find-key')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var key = findKey(obj, function (val, key, obj) {
+  return val > 25
+})
+key // 'baz'
+var notfound = findKey(obj, function (val, key, obj) {
+  return val > 100
+})
+notfound // undefined
 */
 ```
 

@@ -16,8 +16,10 @@ module.exports = extendObjectPrototype
 function extendObjectPrototype (hideWarnings) {
   [
     'every',
-    'forEach',
     'filter',
+    'find',
+    'findKey',
+    'forEach',
     'map',
     'mapKeys',
     'reduce',
