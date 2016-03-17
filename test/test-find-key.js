@@ -91,6 +91,21 @@ describe('findKey', function () {
       expect(ret).to.equal(1)
       done()
     })
+    it('should break loop if item is found (weird array)', function (done) {
+      var obj = [
+        'foo',
+        'bar',
+        'baz'
+      ]
+      obj['wut'] = 'hello'
+      var callback = sinon.spy(equals('hello'))
+      var thisArg = {}
+      var ret = findKey(obj, callback, thisArg)
+      // assertions
+      expect(callback.callCount).to.equal(3)
+      expect(ret).to.equal(undefined)
+      done()
+    })
     describe('errors', function () {
       it('should throw an error if obj must be an object', function (done) {
         var obj = 'notObject'
@@ -113,25 +128,53 @@ describe('findKey', function () {
         done()
       })
     })
-    describe('use w/ array', function () {
-      beforeEach(function (done) {
-        sinon.spy(Array.prototype, 'findIndex')
-        done()
+    if (Array.prototype.findIndex) {
+      describe('use w/ array', function () {
+        beforeEach(function (done) {
+          sinon.spy(Array.prototype, 'findIndex')
+          done()
+        })
+        afterEach(function (done) {
+          Array.prototype.findIndex.restore()
+          done()
+        })
+        it('should use array findIndex', function (done) {
+          var arr = [1, 2, 3]
+          var callback = noop
+          var index = arr.findIndex(callback, arr)
+          expect(findKey(arr, callback))
+            .to.equal(~index ? index : undefined)
+          sinon.assert.calledOn(Array.prototype.findIndex, arr)
+          sinon.assert.calledWith(Array.prototype.findIndex, callback)
+          done()
+        })
       })
-      afterEach(function (done) {
-        Array.prototype.findIndex.restore()
-        done()
+      describe('use w/ array', function () {
+        var findIndex = Array.prototype.findIndex
+        beforeEach(function (done) {
+          delete Array.prototype.findIndex
+          done()
+        })
+        afterEach(function (done) {
+          Array.prototype.findIndex = findIndex // eslint-disable-line no-extend-native
+          done()
+        })
+        it('should break loop if item is found (weird array)', function (done) {
+          var obj = [
+            'foo',
+            'bar',
+            'baz'
+          ]
+          obj['wut'] = 'hello'
+          var callback = sinon.spy(equals('hello'))
+          var thisArg = {}
+          var ret = findKey(obj, callback, thisArg)
+          // assertions
+          expect(callback.callCount).to.equal(3)
+          expect(ret).to.equal(undefined)
+          done()
+        })
       })
-      it('should use array findIndex', function (done) {
-        var arr = [1, 2, 3]
-        var callback = noop
-        var index = arr.findIndex(callback, arr)
-        expect(findKey(arr, callback))
-          .to.equal(~index ? index : undefined)
-        sinon.assert.calledOn(Array.prototype.findIndex, arr)
-        sinon.assert.calledWith(Array.prototype.findIndex, callback)
-        done()
-      })
-    })
+    }
   })
 })

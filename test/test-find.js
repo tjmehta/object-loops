@@ -113,24 +113,26 @@ describe('find', function () {
         done()
       })
     })
-    describe('use w/ array', function () {
-      beforeEach(function (done) {
-        sinon.spy(Array.prototype, 'findIndex')
-        done()
+    if (Array.prototype.findIndex) {
+      describe('use w/ array', function () {
+        beforeEach(function (done) {
+          sinon.spy(Array.prototype, 'findIndex')
+          done()
+        })
+        afterEach(function (done) {
+          Array.prototype.findIndex.restore()
+          done()
+        })
+        it('should use array findIndex', function (done) {
+          var arr = [1, 2, 3]
+          var callback = noop
+          expect(find(arr, callback))
+            .to.equal(arr.find(callback, arr))
+          sinon.assert.calledOn(Array.prototype.findIndex, arr)
+          sinon.assert.calledWith(Array.prototype.findIndex, callback)
+          done()
+        })
       })
-      afterEach(function (done) {
-        Array.prototype.findIndex.restore()
-        done()
-      })
-      it('should use array findIndex', function (done) {
-        var arr = [1, 2, 3]
-        var callback = noop
-        expect(find(arr, callback))
-          .to.equal(arr.find(callback, arr))
-        sinon.assert.calledOn(Array.prototype.findIndex, arr)
-        sinon.assert.calledWith(Array.prototype.findIndex, callback)
-        done()
-      })
-    })
+    }
   })
 })

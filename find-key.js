@@ -2,6 +2,13 @@
  * @module object-loops/find-key
  */
 
+var isInteger = require('101/is-integer')
+
+var castArrayKey = function (key) {
+  var num = parseInt(key, 10)
+  return isNaN(num) ? key : num
+}
+
 /**
  * Find the key of the the object that passes the test implemented by the callback.
  * @function module:object-loops/find-key
@@ -13,9 +20,12 @@
 module.exports = findKey
 
 function findKey (obj, callback, thisArg) {
-  if (Array.isArray(obj) && obj.findIndex) {
+  var isArray = Array.isArray(obj)
+  if (isArray && obj.findIndex) {
+    /* $lab:coverage:off$ */ // not covered in envs that don't have `findIndex`
     var index = obj.findIndex(callback, thisArg)
     return ~index ? index : undefined
+    /* $lab:coverage:on$ */
   }
   if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError(obj + ' must be an object')
@@ -25,6 +35,10 @@ function findKey (obj, callback, thisArg) {
   }
   var ret
   var keys = Object.keys(obj)
+
+  if (isArray) {
+    keys = Object.keys(obj).map(castArrayKey).filter(isInteger)
+  }
 
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i]
