@@ -1,7 +1,7 @@
 object-loops [![Build Status](https://travis-ci.org/tjmehta/object-loops.svg)](https://travis-ci.org/tjmehta/object-loops)
 ============
 
-Functional methods like forEach, map, filter, and other ES5 Array methods for Objects in javascript
+Functional methods like forEach, map, filter, and other Array methods for Objects in javascript
 
 # Installation
 
