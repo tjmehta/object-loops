@@ -13,7 +13,7 @@
 module.exports = findKey
 
 function findKey (obj, callback, thisArg) {
-  if (Array.isArray(obj)) {
+  if (Array.isArray(obj) && obj.findIndex) {
     var index = obj.findIndex(callback, thisArg)
     return ~index ? index : undefined
   }
