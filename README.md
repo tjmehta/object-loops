@@ -10,13 +10,23 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 # Index
 
 [chain](https://github.com/tjmehta/object-loops#usage)
+
 [every](https://github.com/tjmehta/object-loops#every)
-[find](https://github.com/tjmehta/object-loops#find)
-[findKey](https://github.com/tjmehta/object-loops#findKey)
+
 [filter](https://github.com/tjmehta/object-loops#filter)
+
+[findKey](https://github.com/tjmehta/object-loops#findKey)
+
+[find](https://github.com/tjmehta/object-loops#find)
+
 [forEach](https://github.com/tjmehta/object-loops#forEach)
+
+[mapKeys](https://github.com/tjmehta/object-loops#mapKeys)
+
 [map](https://github.com/tjmehta/object-loops#map)
+
 [reduce](https://github.com/tjmehta/object-loops#reduce)
+
 [some](https://github.com/tjmehta/object-loops#some)
 
 # Usage
@@ -88,6 +98,35 @@ allGreaterThan25 // false
 */
 ```
 
+## filter
+
+Creates a new object with all entries that pass the test implemented by the provided function.
+
+ * @param {object} [obj] - object to filter values, not accepted if being used directly on Object.prototype
+ * @param {function} callback - function to test each value in the object. return true to keep that entry, false otherwise.
+ * @param {*} [thisArg] - optional. context to bind to callback
+ * @returns {object} newly created object with filtered values
+
+```js
+var filter = require('object-loops/filter')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30,
+  qux: 40,
+}
+var filteredObj = filter(obj, function (val, key, obj) {
+  return val > 25
+})
+filteredObj /* Only has entries with vals greater than 25
+{
+  baz: 30,
+  qux: 40
+}
+*/
+```
+
 ## find
 
 Find the value of the the object that passes the test implemented by the callback.
@@ -146,35 +185,6 @@ notfound // undefined
 */
 ```
 
-## filter
-
-Creates a new object with all entries that pass the test implemented by the provided function.
-
- * @param {object} [obj] - object to filter values, not accepted if being used directly on Object.prototype
- * @param {function} callback - function to test each value in the object. return true to keep that entry, false otherwise.
- * @param {*} [thisArg] - optional. context to bind to callback
- * @returns {object} newly created object with filtered values
-
-```js
-var filter = require('object-loops/filter')
-
-var obj = {
-  foo: 10,
-  bar: 20,
-  baz: 30,
-  qux: 40,
-}
-var filteredObj = filter(obj, function (val, key, obj) {
-  return val > 25
-})
-filteredObj /* Only has entries with vals greater than 25
-{
-  baz: 30,
-  qux: 40
-}
-*/
-```
-
 ## forEach
 
 Executes a provided function once per each object value.
@@ -199,6 +209,35 @@ forEach(obj, function (val, key, obj) {
 })
 keyConcat // = 'foobarbaz'
 valSum    // = 60
+```
+
+## mapKeys
+
+Creates a new object with the results of calling a provided function on every key in the object.
+
+ * @param {object} [obj] - object to map keys, not accepted if being used directly on Object.prototype
+ * @param {mapKeysCallback} callback - function that produces the new key for the new mapped object
+ * @param {*} [thisArg] - optional. context to bind to callback
+ * @returns {object} newly created object with mapped keys
+
+```js
+var mapKeys = require('object-loops/map-keys')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30
+}
+var mappedObj = mapKeys(obj, function (key, val, obj) {
+  return key + 'New'
+})
+mappedObj /* Each key is concated w/ 'New'
+{
+  fooNew: 10,
+  barNew: 20,
+  bazNew: 30
+}
+*/
 ```
 
 ## map
