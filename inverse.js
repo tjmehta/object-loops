@@ -5,10 +5,10 @@ var isInteger = require('101/is-integer')
 var reduce = require('./reduce')
 
 /**
- * Creates a new object with keys and values swapped.
+ * Creates a new object with keys and values flipped.
  * @function module:object-loops/inverse
  * @param {object} [obj] - object to inverse keys and values, not accepted if being used directly on Object.prototype
- * @returns {object} newly created object with inverseped values
+ * @returns {object} newly created object with inversed values
  */
 module.exports = inverse
 
