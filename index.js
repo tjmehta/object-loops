@@ -16,12 +16,13 @@ module.exports = extendObjectPrototype
 function extendObjectPrototype (hideWarnings) {
   [
     'every',
+    'inverse',
     'filter',
-    'find',
     'findKey',
+    'find',
     'forEach',
-    'map',
     'mapKeys',
+    'map',
     'reduce',
     'some'
   ].forEach(function (methodName) {

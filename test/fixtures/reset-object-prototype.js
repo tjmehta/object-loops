@@ -1,5 +1,6 @@
 var methodNames = [
   'every',
+  'inverse',
   'filter',
   'find',
   'findKey',
