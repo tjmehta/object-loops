@@ -13,6 +13,8 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 
 [every](https://github.com/tjmehta/object-loops#every)
 
+[inverse](https://github.com/tjmehta/object-loops#inverse)
+
 [filter](https://github.com/tjmehta/object-loops#filter)
 
 [findKey](https://github.com/tjmehta/object-loops#findKey)
@@ -95,6 +97,31 @@ var allGreaterThan25 = every(obj, function (val, key, obj) {
   return val > 25
 })
 allGreaterThan25 // false
+*/
+```
+
+## inverse
+
+Creates a new object with keys and values flipped.
+
+* @param {object} [obj] - object to inverse keys and values, not accepted if being used directly on Object.prototype
+* @returns {object} newly created object with inversed values
+
+```js
+var inverse = require('object-loops/inverse')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30
+}
+var inversedObj = inverse(obj)
+inversedObj /* keys and vals are flipped
+{
+  '10': 'foo',
+  '20': 'bar',
+  '30': 'baz'
+}
 */
 ```
 
