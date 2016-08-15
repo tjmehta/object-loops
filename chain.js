@@ -30,11 +30,16 @@ Chain.prototype.toJSON = function () {
 extendChainPrototype()
 function extendChainPrototype (hideWarnings) {
   [
+    'every',
+    'inverse',
     'filter',
+    'findKey',
+    'find',
     'forEach',
     'mapKeys',
     'map',
-    'reduce'
+    'reduce',
+    'some'
   ].forEach(function (methodName) {
     var filename = dasherize(methodName)
     var filepath = path.join(__dirname, filename)
