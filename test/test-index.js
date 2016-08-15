@@ -10,6 +10,8 @@ var expect = Code.expect
 
 var noop = require('101/noop')
 
+var allMethodNames = require('./fixtures/all-method-names.js')
+
 describe('index', function () {
   describe('all methods', function () {
     before(function (done) {
@@ -17,6 +19,12 @@ describe('index', function () {
       done()
     })
     after(require('./fixtures/reset-object-prototype'))
+    it('should have all methods', function (done) {
+      allMethodNames.forEach(function (name) {
+        expect(Object[name]).to.be.a.function()
+      })
+      done()
+    })
     it('should iterate through all the key-value pairs in the object', function (done) {
       var obj = {
         foo: 1,

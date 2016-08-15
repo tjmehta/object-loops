@@ -8,6 +8,7 @@ var describe = lab.describe
 var it = lab.it
 var expect = Code.expect
 
+var allMethodNames = require('./fixtures/all-method-names.js')
 var chain = require('../chain')
 
 describe('chain', function () {
@@ -24,6 +25,13 @@ describe('chain', function () {
       .reduce(reduceCb)
       .toJSON()
     expect(output).to.deep.equal({ x: 1, y: 1 })
+    done()
+  })
+  it('should have all methods', function (done) {
+    var chainable = chain({})
+    allMethodNames.forEach(function (name) {
+      expect(chainable[name]).to.be.a.function()
+    })
     done()
   })
   describe('errors', function () {
