@@ -62,8 +62,7 @@ function extendChainPrototype (hideWarnings) {
 
         return this
       },
-      enumerable: false,
-      configurable: envIs('test') // hack for tests
+      enumerable: false
     })
   })
 }

@@ -18,14 +18,16 @@ function mapKeys (obj, callback, thisArg) {
     throw new TypeError(callback + ' must be a function')
   }
   var objIsArray = Array.isArray(obj)
-  if (objIsArray) {
-    forEach = Array.prototype.forEach.call.bind(Array.prototype.forEach)
-  }
   var mapped = objIsArray ? [] : {}
-  forEach(obj, function (val, key, obj) {
+  if (objIsArray) {
+    obj.forEach(eachCallback)
+  } else {
+    forEach(obj, eachCallback)
+  }
+  function eachCallback (val, key, obj) {
     var newKey = callback.call(thisArg, key, val, obj)
     mapped[newKey] = val
-  })
+  }
   return mapped
 }
 /**

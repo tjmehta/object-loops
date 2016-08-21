@@ -23,8 +23,12 @@ describe('chain', function () {
       .map(mapCb)
       .mapKeys(mapKeysCb)
       .reduce(reduceCb)
+      .keys()
+      .map(mapCb)
+      .mapKeys(mapKeysCb)
+      .reduce(reduceCb)
       .toJSON()
-    expect(output).to.deep.equal({ x: 1, y: 1 })
+    expect(output).to.deep.equal(['x', 'y'])
     done()
   })
   it('should have all methods', function (done) {
