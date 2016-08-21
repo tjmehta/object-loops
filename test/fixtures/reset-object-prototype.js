@@ -1,15 +1,4 @@
-var methodNames = [
-  'every',
-  'inverse',
-  'filter',
-  'find',
-  'findKey',
-  'forEach',
-  'map',
-  'mapKeys',
-  'reduce',
-  'some'
-]
+var methodNames = require('./all-method-names.js')
 
 module.exports = resetObjectPrototype
 

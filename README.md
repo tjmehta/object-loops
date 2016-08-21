@@ -23,6 +23,10 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 
 [forEach](https://github.com/tjmehta/object-loops#forEach)
 
+[keys](https://github.com/tjmehta/object-loops#keys)
+
+[keysIn](https://github.com/tjmehta/object-loops#keysIn)
+
 [mapKeys](https://github.com/tjmehta/object-loops#mapKeys)
 
 [map](https://github.com/tjmehta/object-loops#map)
@@ -30,6 +34,10 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 [reduce](https://github.com/tjmehta/object-loops#reduce)
 
 [some](https://github.com/tjmehta/object-loops#some)
+
+[values](https://github.com/tjmehta/object-loops#values)
+
+[valuesIn](https://github.com/tjmehta/object-loops#valuesIn)
 
 # Usage
 
@@ -238,6 +246,44 @@ keyConcat // = 'foobarbaz'
 valSum    // = 60
 ```
 
+## keys
+
+Equivalent to `Object.keys`. Implemented specifically for chain.
+
+```js
+var chain = require('object-loops/chain')
+
+var obj = {
+  foo: 10,
+  bar: 20,
+  baz: 30
+}
+chain(obj)
+  .keys()
+  .toJSON()
+// ['foo', 'bar', 'baz']
+```
+
+## keysIn
+
+Like to `keys`, but includes enumerable keys from the prototype chain.
+
+```js
+var keysIn = require('object-loops/keys-in')
+
+function Person (name) {
+  this.name = name
+}
+Person.prototype.getName = function () {
+  return this.name
+}
+
+var person = new Person('foo')
+keysIn(obj)
+// ['name', 'getName']
+// for comparison, `keys` would return ['name']
+```
+
 ## mapKeys
 
 Creates a new object with the results of calling a provided function on every key in the object.
@@ -343,6 +389,45 @@ var anyGreaterThan25 = some(obj, function (val, key, obj) {
 })
 anyGreaterThan25 // true
 */
+```
+
+## values
+
+Like to `keys`, but returns direct enumerable values.
+
+```js
+var values = require('object-loops/values')
+
+function Person (name) {
+  this.name = name
+}
+Person.prototype.getName = function () {
+  return this.name
+}
+
+var person = new Person('foo')
+values(obj)
+// ['foo']
+// for comparison, `valuesIn` would return ['foo', Person.prototype.getName]
+```
+
+## valuesIn
+
+Like to `keys`, but returns direct enumerable values including prototype chain.
+
+```js
+var valuesIn = require('object-loops/values-in')
+
+function Person (name) {
+  this.name = name
+}
+Person.prototype.getName = function () {
+  return this.name
+}
+
+var person = new Person('foo')
+valuesIn(obj)
+// ['foo', Person.prototype.getName]
 ```
 
 ## License
