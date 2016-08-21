@@ -36,10 +36,14 @@ function extendChainPrototype (hideWarnings) {
     'findKey',
     'find',
     'forEach',
+    'keys',
+    'keysIn',
     'mapKeys',
     'map',
     'reduce',
-    'some'
+    'some',
+    'values',
+    'valuesIn'
   ].forEach(function (methodName) {
     var filename = dasherize(methodName)
     var filepath = path.join(__dirname, filename)
