@@ -42,7 +42,7 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 # Usage
 
 #### You can require each method individually `object-loops/<loop>`
-
+* Most efficient for browser bundling. Only bundles what you use.
 ```js
 var filter = require('object-loops/filter')
 var forEach = require('object-loops/for-each')
@@ -59,7 +59,7 @@ reduce({ x:10, y: 20 }, callback)
 ```
 
 #### If you want to chain multiple object-loops use `object-loops/chain`
-
+* Not efficient for browser bundling. Bundles all object-loops, even those not used.
 ```js
 var chain = require('object-loops/chain')
 chain({ x:10, y: 20 })
@@ -72,7 +72,7 @@ chain({ x:10, y: 20 })
 ```
 
 #### If you want to use forEach, map, reduce, filter, etc methods directly on objects:
-
+* Not efficient for browser bundling. Bundles all object-loops, even those not used.
 ```js
 require('object-loops')() // extends Object.prototype
 obj.forEach(callback)
