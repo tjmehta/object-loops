@@ -413,7 +413,7 @@ values(obj)
 
 ## valuesIn
 
-Like to `keys`, but returns direct enumerable values including prototype chain.
+Like to `keys`, but returns all enumerable values including prototype chain.
 
 ```js
 var valuesIn = require('object-loops/values-in')
