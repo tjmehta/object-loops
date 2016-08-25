@@ -17,17 +17,17 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 
 [filter](https://github.com/tjmehta/object-loops#filter)
 
-[findKey](https://github.com/tjmehta/object-loops#findKey)
+[findKey](https://github.com/tjmehta/object-loops#findkey)
 
 [find](https://github.com/tjmehta/object-loops#find)
 
-[forEach](https://github.com/tjmehta/object-loops#forEach)
+[forEach](https://github.com/tjmehta/object-loops#foreach)
 
 [keys](https://github.com/tjmehta/object-loops#keys)
 
-[keysIn](https://github.com/tjmehta/object-loops#keysIn)
+[keysIn](https://github.com/tjmehta/object-loops#keysin)
 
-[mapKeys](https://github.com/tjmehta/object-loops#mapKeys)
+[mapKeys](https://github.com/tjmehta/object-loops#mapkeys)
 
 [map](https://github.com/tjmehta/object-loops#map)
 
@@ -37,7 +37,7 @@ Functional methods like forEach, map, filter, and other Array methods for Object
 
 [values](https://github.com/tjmehta/object-loops#values)
 
-[valuesIn](https://github.com/tjmehta/object-loops#valuesIn)
+[valuesIn](https://github.com/tjmehta/object-loops#valuesin)
 
 # Usage
 
