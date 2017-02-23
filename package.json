@@ -44,10 +44,10 @@
   },
   "devDependencies": {
     "camelize": "^1.0.0",
-    "code": "^1.5.0",
-    "lab": "^6.2.0",
+    "code": "^4.0.0",
+    "lab": "^11.2.1",
     "nodemon": "^1.8.1",
     "sinon": "^1.17.2",
-    "standard": "^5.4.1"
+    "standard": "^8.6.0"
   }
 }
